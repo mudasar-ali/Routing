@@ -1,4 +1,6 @@
-<% @products.each do |product|%>
+<br>
+<%= link_to "Create Product", new_product_path%>
+<br><br><br><% @products.each do |product|%>
 <p><strong> Product Name:</strong> <%= product.name %></p>
 
 <%= link_to "Detail", product_url(product)%>
