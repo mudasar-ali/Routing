@@ -3,6 +3,4 @@ Rails.application.routes.draw do
   # #verb      URI           controller+action             prefix(products_path)
   # get 'products/:id', to: "products#show", as: "product"
   resources :products
-
-
 end
