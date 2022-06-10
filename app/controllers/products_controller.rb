@@ -1,31 +1,34 @@
 class ProductsController < ApplicationController
-  def index
-    @products = Product.all
-  end
-
-  def new
-    @product = Product.new
-  end
-
   def create
-    @product = Product.new(product_params)
-    if @product.save
-      redirect_to @product
+    @shop = Shop.find(params[:shop_id])
+    @product = @shop.products.create(product_params)
+    redirect_to shop_path(params[:shop_id])
+  end
+
+  def edit
+    @shop = Shop.find(params[:shop_id])
+    @product=@shop.products.find(params[:id])
+
+
+  end
+
+  def update
+    @shop = Shop.find(params[:shop_id])
+    @product = @shop.products.find(params[:id])
+
+    if @product.update(product_params)
+      redirect_to @shop
     else
-      render 'new'
+      render 'edit'
     end
   end
 
-  def show
-    @product= Product.find(params[:id])
-
-  end
-
   def destroy
-    @product = Product.find(params[:id]).destroy
-    redirect_to products_path
+    @shop = Shop.find(params[:shop_id])
+    @product = @shop.products.find(params[:id])
+    @product.destroy
+    redirect_to shop_path
   end
-
   private
   def product_params
     params.require(:product).permit(:name, :description, :price)

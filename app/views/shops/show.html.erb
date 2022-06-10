@@ -1,0 +1,18 @@
+<h2>Shop Details</h2>
+<p><strong>Shop's Name: </strong> <%=@shop.name%></p>
+<p><strong>Shop's Address: </strong> <%=@shop.address%></p>
+<br>
+<h2>Products Available</h2>
+<% @shop.products.each do |product|%>
+<p><strong>Product"s Name:</strong> <%= product.name %></p>
+<p><strong>Description:</strong> <%= product.description %></p>
+<p><strong>Price:</strong> <%= product.price %></p>
+<%= link_to "Edit Product", edit_shop_product_path(@shop,product) %>
+  <%= button_to 'Delete Product', [product.shop, product],
+               method: :delete%>
+
+<%end%>
+
+<h2>Add new Product</h2>
+<%= render partial: "products/for", locals:{shop:@shop, product:@shop.products.build}%>
+<%=link_to "All Shops", shops_path%>

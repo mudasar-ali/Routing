@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-  validates :name, :price, presence: true
-  validates :price, numericality: true
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  validates :price, numericality: true, presence: true
+
+  belongs_to :shop
 end

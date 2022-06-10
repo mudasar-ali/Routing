@@ -1,0 +1,11 @@
+<%=link_to "New shop", new_shop_path%>
+<br><br>
+
+<h2>All shops Names</h2>
+<%@shops.each do |shop|%>
+<p><strong>Shop's Name: </strong> <%=shop.name%></p>
+<%= link_to "Detail", shop%>
+<%= link_to "Edit", edit_shop_path(shop) %>
+ <%= button_to 'Delete Product', shop,
+               method: :delete%>
+<%end%>
